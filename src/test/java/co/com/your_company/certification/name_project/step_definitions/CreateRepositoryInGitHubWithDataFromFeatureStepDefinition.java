@@ -16,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
+import static co.com.your_company.certification.name_project.model.builders.RepositoryBuilder.name;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.core.Is.is;
 
@@ -44,7 +45,7 @@ public class CreateRepositoryInGitHubWithDataFromFeatureStepDefinition {
     @When("^you create a repository in github with the data$")
     public void you_create_a_repository_in_github_with_the_data(List<String> repositoryData) throws Exception {
         cesar.attemptsTo(CreateRepository.withTheFollowingData(
-                new RepositoryBuilder(repositoryData.get(NAME_REPOSITORY))
+                name(repositoryData.get(NAME_REPOSITORY))
                         .description(repositoryData.get(DESCRIPTIONI_REPOSITORY))
                         .build()));
     }

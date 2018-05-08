@@ -22,6 +22,10 @@ public class RepositoryBuilder implements Builder {
         this.license = License.NONE;
     }
 
+    public static RepositoryBuilder name(String name){
+        return new RepositoryBuilder(name);
+    }
+
     public RepositoryBuilder description(String description){
         this.description = description;
         return this;
