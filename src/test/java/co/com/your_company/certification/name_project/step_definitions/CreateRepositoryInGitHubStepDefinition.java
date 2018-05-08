@@ -1,11 +1,11 @@
 package co.com.your_company.certification.name_project.step_definitions;
 
 import co.com.your_company.certification.name_project.model.User;
+import co.com.your_company.certification.name_project.model.enumerables.GitIgnore;
+import co.com.your_company.certification.name_project.model.enumerables.License;
 import co.com.your_company.certification.name_project.questions.TheRepository;
 import co.com.your_company.certification.name_project.tasks.CreateRepository;
 import co.com.your_company.certification.name_project.tasks.Start;
-import co.com.your_company.certification.name_project.model.enumerables.GitIgnore;
-import co.com.your_company.certification.name_project.model.enumerables.License;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
