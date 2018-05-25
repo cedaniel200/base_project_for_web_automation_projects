@@ -5,6 +5,7 @@ import co.com.your_company.certification.name_project.interactions.SelectDropDow
 import co.com.your_company.certification.name_project.model.Repository;
 import co.com.your_company.certification.name_project.model.enumerables.GitIgnore;
 import co.com.your_company.certification.name_project.model.enumerables.License;
+import co.com.your_company.certification.name_project.util.builder.Builder;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -59,8 +60,8 @@ public class CreateRepository implements Task {
         }
     }
 
-    public static CreateRepository withTheFollowingData(Repository repository){
-        return instrumented(CreateRepository.class, repository);
+    public static CreateRepository withTheFollowingData(Builder<Repository> builder){
+        return instrumented(CreateRepository.class, builder.build());
     }
 
 }

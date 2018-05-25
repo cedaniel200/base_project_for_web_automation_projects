@@ -11,10 +11,9 @@ Feature: Create repository
   @tag2
   Scenario Outline: Creation of the repository with data
     Given I want to start versioning in GitHub
-    |    username   |    password     |
-    |   <username>  |   <password>    |
+      |   username  |  password   |
+      |   <username>  |   <password>    |
     When you create a repository in github with the data
-    |     name     |          description          |
     |    <name>    |         <description>         |
     Then I should see the "<name>" repository created
 

@@ -3,10 +3,9 @@ package co.com.your_company.certification.name_project.model.builders;
 import co.com.your_company.certification.name_project.model.Repository;
 import co.com.your_company.certification.name_project.model.enumerables.GitIgnore;
 import co.com.your_company.certification.name_project.model.enumerables.License;
+import co.com.your_company.certification.name_project.util.builder.Builder;
 
-import static co.com.your_company.certification.name_project.util.validations.Validations.isEmptyOrNull;
-
-public class RepositoryBuilder implements Builder {
+public class RepositoryBuilder implements Builder<Repository> {
 
     private String name;
     private String description;
@@ -14,7 +13,7 @@ public class RepositoryBuilder implements Builder {
     private GitIgnore gitIgnore;
     private License license;
 
-    public RepositoryBuilder(String name) {
+    private RepositoryBuilder(String name) {
         this.name = name;
         this.initializeWithREADME = false;
         this.description = "";
@@ -67,13 +66,7 @@ public class RepositoryBuilder implements Builder {
     }
 
     public Repository build() throws IllegalStateException {
-        Repository repository = new Repository(this);
-
-        if (isEmptyOrNull(repository.getName())) {
-            throw new IllegalStateException("The repository does not contain a name");
-        }
-
-        return repository;
+        return new Repository(this);
     }
 
 }

@@ -4,6 +4,8 @@ import co.com.your_company.certification.name_project.model.builders.RepositoryB
 import co.com.your_company.certification.name_project.model.enumerables.GitIgnore;
 import co.com.your_company.certification.name_project.model.enumerables.License;
 
+import static co.com.your_company.certification.name_project.util.validations.Validations.isEmptyOrNull;
+
 public class Repository {
 
     private final String name;
@@ -12,12 +14,19 @@ public class Repository {
     private final GitIgnore gitIgnore;
     private final License license;
 
-    public Repository(RepositoryBuilder builder) {
+    public Repository(RepositoryBuilder builder) throws IllegalStateException {
         name = builder.getName();
         description = builder.getDescription();
         initializeWithREADME = builder.isInitializeWithREADME();
         gitIgnore = builder.getGitIgnore();
         license = builder.getLicense();
+        isValid();
+    }
+
+    private void isValid() throws IllegalStateException {
+        if (isEmptyOrNull(this.name)) {
+            throw new IllegalStateException("The repository does not contain a name");
+        }
     }
 
     public String getName() {

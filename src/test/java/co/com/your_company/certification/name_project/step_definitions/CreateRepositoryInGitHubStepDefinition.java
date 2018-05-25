@@ -1,8 +1,5 @@
 package co.com.your_company.certification.name_project.step_definitions;
 
-import co.com.your_company.certification.name_project.model.User;
-import co.com.your_company.certification.name_project.model.enumerables.GitIgnore;
-import co.com.your_company.certification.name_project.model.enumerables.License;
 import co.com.your_company.certification.name_project.questions.TheRepository;
 import co.com.your_company.certification.name_project.tasks.CreateRepository;
 import co.com.your_company.certification.name_project.tasks.Start;
@@ -16,6 +13,9 @@ import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 
 import static co.com.your_company.certification.name_project.model.builders.RepositoryBuilder.name;
+import static co.com.your_company.certification.name_project.model.builders.UserBuilder.theUser;
+import static co.com.your_company.certification.name_project.model.enumerables.GitIgnore.JAVA;
+import static co.com.your_company.certification.name_project.model.enumerables.License.MIT;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.core.Is.is;
 
@@ -32,8 +32,8 @@ public class CreateRepositoryInGitHubStepDefinition {
 
     @Given("^I want to start versioning$")
     public void i_want_to_start_versioning() throws Exception {
-        User user = new User("YOUR_USERNAME", "YOUR_PASSWORD");
-        cesar.wasAbleTo(Start.withAnAuthenticatedUser(user));
+        cesar.wasAbleTo(Start.authenticating(theUser("YOUR_USERNAME")
+                                .withPassword("YOUR_PASSWORD")));
     }
 
     @When("^you create a repository in github$")
@@ -42,9 +42,8 @@ public class CreateRepositoryInGitHubStepDefinition {
                 name("TEST_BDD")
                         .description("repository for bdd tests")
                         .initializeWithREADME()
-                        .gitIgnore(GitIgnore.JAVA)
-                        .license(License.MIT)
-                        .build()));
+                        .gitIgnore(JAVA)
+                        .license(MIT)));
     }
 
     @Then("^I should see the repository created$")

@@ -5,12 +5,14 @@ import co.com.your_company.certification.name_project.model.User;
 import co.com.your_company.certification.name_project.user_interface.GitHubLoginPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.actions.*;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Hover;
+import net.serenitybdd.screenplay.actions.Open;
 
+import static co.com.your_company.certification.name_project.model.builders.UserBuilder.theUser;
 import static co.com.your_company.certification.name_project.user_interface.GitHubHomePage.DASHBOARD;
-import static co.com.your_company.certification.name_project.user_interface.GitHubLoginPage.PASSWORD;
-import static co.com.your_company.certification.name_project.user_interface.GitHubLoginPage.SIGN_IN;
-import static co.com.your_company.certification.name_project.user_interface.GitHubLoginPage.USERNAME_OR_EMAIL_ADDRESS;
+import static co.com.your_company.certification.name_project.user_interface.GitHubLoginPage.*;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class Start implements Task {
@@ -24,12 +26,12 @@ public class Start implements Task {
         this.user = user;
     }
 
-    public static Start withAnAuthenticatedUser(User user) {
+    public static Start authenticating(User user) {
         return instrumented(Start.class, user);
     }
 
     public static Start withAnAuthenticatedDefaultUser() {
-        return instrumented(Start.class, new User(USERNAME, USER_PASSWORD));
+        return instrumented(Start.class, theUser(USERNAME).withPassword(USER_PASSWORD));
     }
 
     public static Start withoutAuthenticating(){
