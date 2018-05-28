@@ -27,6 +27,10 @@ public class Start implements Task {
         this.user = user;
     }
 
+    public Start(){
+        this.user = null;
+    }
+
     public static Start authenticating(User user) {
         return instrumented(Start.class, user);
     }
@@ -36,7 +40,7 @@ public class Start implements Task {
     }
 
     public static Start withoutAuthenticating(){
-        return instrumented(Start.class,  null);
+        return instrumented(Start.class);
     }
 
     @Override

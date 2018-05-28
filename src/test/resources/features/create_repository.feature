@@ -10,8 +10,8 @@ Feature: Create repository
 
   Scenario: Creation of the repository
     Given I want to start versioning
-    When you create a repository in github c
-    Then I should see the repository created x
+    When you create a repository in github
+    Then I should see the repository created
 
   @tag2
   Scenario Outline: Creation of the repository with data
