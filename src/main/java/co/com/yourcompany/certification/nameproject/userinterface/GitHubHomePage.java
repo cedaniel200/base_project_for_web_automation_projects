@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 @DefaultUrl("https://github.com/")
 public class GitHubHomePage extends PageObject{
     public static final Target NEW_REPOSITORY = Target.the("New repository")
-            .locatedBy("//*[@id=\"your_repos\"]/div/div[1]/a");
+            .locatedBy("//*[@id=\"dashboard\"]/div[1]/div[3]/div[1]/h3/a");
 
     public static final Target DASHBOARD = Target.the("Dashboard  of the home page")
             .located(By.id("dashboard"));

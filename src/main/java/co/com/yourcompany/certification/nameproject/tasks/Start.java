@@ -8,13 +8,15 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.Hover;
 import net.serenitybdd.screenplay.actions.Open;
 
 import static co.com.yourcompany.certification.nameproject.model.builders.UserBuilder.theUser;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubHomePage.DASHBOARD;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubLoginPage.*;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 
 public class Start implements Task {
 
@@ -44,38 +46,29 @@ public class Start implements Task {
     }
 
     @Override
-    public <T extends Actor> void performAs(T actor) {
-        loadLoginPage(actor);
+    public <T extends Actor> void performAs(T theActor) {
+        loadLoginPage(theActor);
         if(this.user != null){
-            authenticateUser(actor);
+            authenticateUser(theActor);
         }
     }
 
-    private <T extends Actor> void loadLoginPage(T actor) {
-        try{
-            tryLoadLoginPage(actor);
-        }catch (Exception e){
-            throw new StartException(StartException.MESSAGE_LOGIN_PAGE_NOT_LOADED, e);
-        }
+    private <T extends Actor> void loadLoginPage(T theActor) {
+        theActor.attemptsTo(Open.browserOn().the(gitHubLoginPage));
+
+        theActor.should(seeThat(the(USERNAME_OR_EMAIL_ADDRESS), isVisible())
+                .orComplainWith(StartException.class,
+                        StartException.MESSAGE_LOGIN_PAGE_NOT_LOADED));
     }
 
-    private <T extends Actor> void tryLoadLoginPage(T actor) {
-        actor.attemptsTo(Open.browserOn().the(gitHubLoginPage));
-    }
-
-    private <T extends Actor> void authenticateUser(T actor) {
-        try{
-            tryAuthenticateUser(actor);
-        }catch (Exception e){
-            throw new StartException(StartException.MESSAGE_FAILED_AUTHENTICATION, e);
-        }
-    }
-
-    private <T extends Actor> void tryAuthenticateUser(T actor) {
-        actor.attemptsTo(
+    private <T extends Actor> void authenticateUser(T theActor) {
+        theActor.attemptsTo(
                 Enter.theValue(user.getUsername()).into(USERNAME_OR_EMAIL_ADDRESS),
                 Enter.theValue(user.getPassword()).into(PASSWORD),
-                Click.on(SIGN_IN),
-                Hover.over(DASHBOARD));
+                Click.on(SIGN_IN));
+
+        theActor.should(seeThat(the(DASHBOARD), isVisible())
+                .orComplainWith(StartException.class,
+                        StartException.MESSAGE_FAILED_AUTHENTICATION));
     }
 }
