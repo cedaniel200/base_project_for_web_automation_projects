@@ -33,7 +33,7 @@ public class CreateRepositoryInGitHubStepDefinition {
     @Given("^I want to start versioning$")
     public void iWantToStartVersioning() throws Exception {
         cesar.wasAbleTo(Start.authenticating(theUser("YOUR_USERNAME")
-                                .withPassword("YOUR_PASSWORD")));
+                .withPassword("YOUR_PASSWORD")));
     }
 
     @When("^you create a repository in github$")
@@ -43,7 +43,9 @@ public class CreateRepositoryInGitHubStepDefinition {
                         .description("repository for bdd tests")
                         .initializeWithREADME()
                         .gitIgnore(JAVA)
-                        .license(MIT)));
+                        .license(MIT)
+                )
+        );
     }
 
     @Then("^I should see the repository created$")
