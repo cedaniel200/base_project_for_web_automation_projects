@@ -20,12 +20,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.1")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.9.9")
     }
 }
 
 ext{
-    serenityVersion = '1.9.8'
+    serenityVersion = '1.9.9'
     serenityCucumberVersion = '1.9.4'
 }
 
@@ -40,6 +40,11 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.9.1'
 
     testImplementation 'org.slf4j:slf4j-simple:1.7.7'
+}
+
+tasks.withType(Test){
+    systemProperties = System.properties
+    maxParallelForks = Runtime.runtime.availableProcessors()
 }
 
 gradle.startParameter.continueOnFailure = true

@@ -1,14 +1,11 @@
-@tag
 Feature: Create repository
   I want to create a repository in github
 
-  @tag1
   Scenario: Creation of the repository
     Given I want to start versioning
     When you create a repository in github
     Then I should see the repository created
 
-  @tag2
   Scenario Outline: Creation of the repository with data
     Given I want to start versioning in GitHub
       |   username  |  password   |
