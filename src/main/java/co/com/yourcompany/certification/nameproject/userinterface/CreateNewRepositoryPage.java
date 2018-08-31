@@ -14,9 +14,11 @@ public class CreateNewRepositoryPage extends PageObject {
     public static final Target INITIALIZE_THIS_REPOSITORY_WITH_README = Target
             .the("Initialize this repository with a README")
             .located(By.id("repository_auto_init"));
+
     public static final Target ADD_GITIGNORE = Target
             .the("Add .gitignore")
-            .locatedBy("#new_repository > div.with-permission-fields > ul > li:nth-child(1) > div > button");
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[1]/div/button");
+
     public static final Target ADD_LICENSE = Target
             .the("Add a license")
             .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[2]/div/button");
@@ -31,5 +33,10 @@ public class CreateNewRepositoryPage extends PageObject {
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
             .located(By.id("context-license-filter-field"));
+
+    public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
+            .the("Error message")
+            .locatedBy("//*[@id=\"new_repository\"]/div[2]/auto-check/dl/dd[2]");
+
 
 }

@@ -10,9 +10,8 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class SelectDropDownButton implements Interaction {
 
-    private static final String CSS_SELECTOR_FORMAT = "#new_repository > div.with-permission-fields > ul > " +
-            "li:nth-child(%d) " +
-            "> div > div > div > div.select-menu-list > div.filterable-active";
+    private static final String CSS_SELECTOR_FORMAT = "#new_repository > div.js-with-permission-fields > ul > " +
+            "li:nth-child(%d) > div > div > div > div.select-menu-list > div.filterable-active";
 
     private final Target button;
     private final Target filter;

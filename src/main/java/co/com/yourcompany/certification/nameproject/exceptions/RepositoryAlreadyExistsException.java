@@ -1,13 +1,15 @@
 package co.com.yourcompany.certification.nameproject.exceptions;
 
-import net.serenitybdd.core.exceptions.SerenityManagedException;
+public class RepositoryAlreadyExistsException extends AssertionError {
 
-public class RepositoryAlreadyExistsException extends SerenityManagedException {
+    private static final String MESSAGE_FORMAT_REPOSITORY_ALREADY_EXISTS = "The repository named %s already exists";
 
-    private static final String MESSAGE_FORMAT = "the repository named %s already exists";
+    public RepositoryAlreadyExistsException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    public RepositoryAlreadyExistsException(String nameRepository, Throwable testErrorException) {
-        super(String.format(MESSAGE_FORMAT, nameRepository), testErrorException);
+    public static String getMessage(String nameRepository){
+        return String.format(MESSAGE_FORMAT_REPOSITORY_ALREADY_EXISTS, nameRepository);
     }
 
 }
