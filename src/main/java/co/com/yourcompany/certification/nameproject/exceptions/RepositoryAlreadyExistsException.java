@@ -8,8 +8,8 @@ public class RepositoryAlreadyExistsException extends AssertionError {
         super(message, cause);
     }
 
-    public static String getMessage(String nameRepository){
-        return String.format(MESSAGE_FORMAT_REPOSITORY_ALREADY_EXISTS, nameRepository);
+    public static String getMessage(String repositoryName){
+        return String.format(MESSAGE_FORMAT_REPOSITORY_ALREADY_EXISTS, repositoryName);
     }
 
 }
