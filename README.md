@@ -2,6 +2,7 @@
 base project with example for web automation projects with serenity BDD, screenplay and cucumber
 
 #Generate Report
+
 In the project directory open a console and execute the following commands:
  
  gradle clean build -x test
