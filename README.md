@@ -9,7 +9,7 @@ In the project directory open a console and execute the following commands:
  
  gradle test aggregate
   
-# warning
+# Warning
 The example uses GitHub users, if the user used is new it may fail, since GitHub sends it to a different page than the one used in the exercise.
 
 ## If you have any questions you can write me at cdanielmg200@gmail.com
