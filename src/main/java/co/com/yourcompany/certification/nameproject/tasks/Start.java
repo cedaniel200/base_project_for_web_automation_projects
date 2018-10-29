@@ -2,6 +2,7 @@ package co.com.yourcompany.certification.nameproject.tasks;
 
 import co.com.yourcompany.certification.nameproject.exceptions.StartException;
 import co.com.yourcompany.certification.nameproject.exceptions.UserModelCreationException;
+import co.com.yourcompany.certification.nameproject.interactions.EnterAndHide;
 import co.com.yourcompany.certification.nameproject.model.User;
 import co.com.yourcompany.certification.nameproject.userinterface.GitHubLoginPage;
 import net.serenitybdd.screenplay.Actor;
@@ -64,7 +65,7 @@ public class Start implements Task {
     private <T extends Actor> void authenticateUser(T theActor) {
         theActor.attemptsTo(
                 Enter.theValue(user.getUsername()).into(USERNAME_OR_EMAIL_ADDRESS),
-                Enter.theValue(user.getPassword()).into(PASSWORD),
+                EnterAndHide.theValue(user.getPassword()).as("***").into(PASSWORD),
                 Click.on(SIGN_IN));
 
         theActor.should(seeThat(the(DASHBOARD), isVisible())

@@ -17,8 +17,7 @@ public class User {
     }
 
     private void isValid() throws UserModelCreationException {
-        if(isEmptyOrNull(username) ||
-                isEmptyOrNull(password)){
+        if(isEmptyOrNull(username) || isEmptyOrNull(password)){
             throw new UserModelCreationException(
                     String.format("Invalid username (%s) or password (%s)", username, password));
         }
