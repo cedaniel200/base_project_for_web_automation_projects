@@ -39,7 +39,7 @@ public class CreateRepositoryInGitHubWithDataFromFeatureStepDefinition {
         cesar.wasAbleTo(Start.authenticating(userCurrentAmong(users)));
     }
 
-    @When("^you create a repository in github with the data$")
+    @When("^I create a repository in github with the data$")
     public void youCreateRepositoryInGithubWithTheData(List<String> repositoryData) throws Exception {
         cesar.attemptsTo(CreateRepository.withTheFollowingData(
                 name(repositoryData.get(NAME_REPOSITORY))

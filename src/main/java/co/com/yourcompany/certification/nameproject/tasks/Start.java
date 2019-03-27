@@ -11,6 +11,8 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 
+import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_FAILED_AUTHENTICATION;
+import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_LOGIN_PAGE_NOT_LOADED;
 import static co.com.yourcompany.certification.nameproject.model.builders.UserBuilder.theUser;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubHomePage.DASHBOARD;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubLoginPage.*;
@@ -26,12 +28,8 @@ public class Start implements Task {
     private final User user;
     private GitHubLoginPage gitHubLoginPage;
 
-    public Start(User user){
+    public Start(User user) {
         this.user = user;
-    }
-
-    public Start(){
-        this.user = null;
     }
 
     public static Start authenticating(User user) {
@@ -42,34 +40,22 @@ public class Start implements Task {
         return instrumented(Start.class, theUser(USERNAME).withPassword(USER_PASSWORD));
     }
 
-    public static Start withoutAuthenticating(){
-        return instrumented(Start.class);
-    }
-
     @Override
     public <T extends Actor> void performAs(T theActor) {
-        loadLoginPage(theActor);
-        if(this.user != null){
-            authenticateUser(theActor);
-        }
-    }
-
-    private <T extends Actor> void loadLoginPage(T theActor) {
         theActor.attemptsTo(Open.browserOn().the(gitHubLoginPage));
 
         theActor.should(seeThat(the(USERNAME_OR_EMAIL_ADDRESS), isVisible())
                 .orComplainWith(StartException.class,
-                        StartException.MESSAGE_LOGIN_PAGE_NOT_LOADED));
-    }
+                        MESSAGE_LOGIN_PAGE_NOT_LOADED));
 
-    private <T extends Actor> void authenticateUser(T theActor) {
         theActor.attemptsTo(
                 Enter.theValue(user.getUsername()).into(USERNAME_OR_EMAIL_ADDRESS),
-                EnterAndHide.theValue(user.getPassword()).as("***").into(PASSWORD),
+                EnterAndHide.theValue(user.getPassword()).into(PASSWORD),
                 Click.on(SIGN_IN));
 
         theActor.should(seeThat(the(DASHBOARD), isVisible())
                 .orComplainWith(StartException.class,
-                        StartException.MESSAGE_FAILED_AUTHENTICATION));
+                        MESSAGE_FAILED_AUTHENTICATION));
     }
+
 }

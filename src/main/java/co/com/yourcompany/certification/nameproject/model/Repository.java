@@ -30,11 +30,11 @@ public class Repository {
         }
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public String getDescription() {
+    public String description() {
         return description;
     }
 
@@ -42,11 +42,11 @@ public class Repository {
         return initializeWithREADME;
     }
 
-    public GitIgnore getGitIgnore() {
+    public GitIgnore gitIgnore() {
         return gitIgnore;
     }
 
-    public License getLicense() {
+    public License license() {
         return license;
     }
 }

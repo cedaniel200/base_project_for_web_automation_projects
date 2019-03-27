@@ -4,17 +4,19 @@ import co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlready
 import co.com.yourcompany.certification.nameproject.exceptions.RepositoryModelCreationException;
 import co.com.yourcompany.certification.nameproject.interactions.SelectDropDownButton;
 import co.com.yourcompany.certification.nameproject.model.Repository;
-import co.com.yourcompany.certification.nameproject.model.enumerables.GitIgnore;
 import co.com.yourcompany.certification.nameproject.model.enumerables.License;
 import co.com.yourcompany.certification.nameproject.util.builder.Builder;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.conditions.Check;
 
+import static co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsException.withMessageBy;
+import static co.com.yourcompany.certification.nameproject.model.enumerables.GitIgnore.NONE;
 import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.*;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubHomePage.NEW_REPOSITORY;
-import static co.com.yourcompany.certification.nameproject.util.validations.Validations.isEmptyOrNull;
+import static co.com.yourcompany.certification.nameproject.util.validations.Validations.isNotEmptyOrNull;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isNotVisible;
@@ -30,33 +32,26 @@ public class CreateRepository implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-
         actor.attemptsTo(
                 Click.on(NEW_REPOSITORY),
-                Enter.theValue(repository.getName()).into(REPOSITORY_NAME)
+                Enter.theValue(repository.name()).into(REPOSITORY_NAME)
         );
 
         actor.should(seeThat(the(MESSAGE_REPOSITORY_ALREADY_EXISTS), isNotVisible())
                 .orComplainWith(RepositoryAlreadyExistsException.class,
-                        RepositoryAlreadyExistsException.getMessage(repository.getName())));
+                        withMessageBy(repository.name())));
 
-        if(!isEmptyOrNull(repository.getDescription())){
-            actor.attemptsTo(Enter.theValue(repository.getDescription()).into(REPOSITORY_DESCRIPTION));
-        }
-
-        if(repository.isInitializeWithREADME()){
-            actor.attemptsTo(Click.on(INITIALIZE_THIS_REPOSITORY_WITH_README));
-        }
-
-        if(!repository.getGitIgnore().equals(GitIgnore.NONE)){
-            actor.attemptsTo(SelectDropDownButton.addGitIgnoreWithFilter(repository.getGitIgnore().toString()));
-        }
-
-        if(!repository.getLicense().equals(License.NONE)){
-            actor.attemptsTo(SelectDropDownButton.addLicenseWithFilter(repository.getLicense().toString()));
-        }
-
-        actor.attemptsTo(Click.on(CREATE_REPOSITORY));
+        actor.attemptsTo(
+                Check.whether(isNotEmptyOrNull(repository.description()))
+                        .andIfSo(Enter.theValue(repository.description()).into(REPOSITORY_DESCRIPTION)),
+                Check.whether(repository.isInitializeWithREADME())
+                        .andIfSo(Click.on(INITIALIZE_THIS_REPOSITORY_WITH_README)),
+                Check.whether(repository.gitIgnore() != NONE)
+                        .andIfSo(SelectDropDownButton.addGitIgnoreFilteringBy(repository.gitIgnore())),
+                Check.whether(repository.license() != License.NONE)
+                        .andIfSo(SelectDropDownButton.addLicenseFilteringBy(repository.license())),
+                Click.on(CREATE_REPOSITORY)
+        );
     }
 
     public static CreateRepository withTheFollowingData(Builder<Repository> builder) throws RepositoryModelCreationException {

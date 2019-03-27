@@ -3,14 +3,14 @@ Feature: Create repository
 
   Scenario: Creation of the repository
     Given I want to start versioning
-    When you create a repository in github
+    When I create a repository in github
     Then I should see the repository created
 
   Scenario Outline: Creation of the repository with data
     Given I want to start versioning in GitHub
       |   username  |  password   |
       |   <username>  |   <password>    |
-    When you create a repository in github with the data
+    When I create a repository in github with the data
     |    <name>    |         <description>         |
     Then I should see the "<name>" repository created
 

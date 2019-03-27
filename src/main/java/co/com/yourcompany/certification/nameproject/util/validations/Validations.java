@@ -5,7 +5,11 @@ public class Validations {
     private Validations() {
     }
 
-    public static boolean isEmptyOrNull(String value){
+    public static boolean isNotEmptyOrNull(String value) {
+        return !isEmptyOrNull(value);
+    }
+
+    public static boolean isEmptyOrNull(String value) {
         return value == null || value.isEmpty();
     }
 }

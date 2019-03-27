@@ -21,21 +21,25 @@ import static org.hamcrest.core.Is.is;
 
 public class CreateRepositoryInGitHubStepDefinition {
 
+    private static final String CESAR = "Cesar";
+
     @Before
     public void jamesCanBrowseTheWeb() {
         OnStage.setTheStage(new OnlineCast());
     }
 
     @Given("^I want to start versioning$")
-    public void iWantToStartVersioning() throws Exception {
-        theActorCalled("Cesar").wasAbleTo(Start.authenticating(theUser("YOUR_USERNAME")
+    public void iWantToStartVersioning() {
+        theActorCalled(CESAR).wasAbleTo(
+                Start.authenticating(theUser("YOUR_USERNAME")
                 .withPassword("YOUR_PASSWORD")));
     }
 
-    @When("^you create a repository in github$")
-    public void whenYouCreateRepositoryInGithub() throws Exception {
-        theActorInTheSpotlight().attemptsTo(CreateRepository.withTheFollowingData(
-                name("TEST_BDD")
+    @When("^I create a repository in github$")
+    public void whenYouCreateRepositoryInGithub() {
+        theActorInTheSpotlight().attemptsTo(
+                CreateRepository.withTheFollowingData(
+                        name("TEST_BDD")
                         .description("repository for bdd tests")
                         .initializeWithREADME()
                         .gitIgnore(JAVA)
@@ -45,7 +49,7 @@ public class CreateRepositoryInGitHubStepDefinition {
     }
 
     @Then("^I should see the repository created$")
-    public void iShouldSeeTheRepositiorioCreated() throws Exception {
+    public void iShouldSeeTheRepositiorioCreated() {
         theActorInTheSpotlight().should(seeThat(TheRepository.name(), is("TEST_BDD")));
     }
 
