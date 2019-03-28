@@ -22,6 +22,8 @@ import static org.hamcrest.core.Is.is;
 public class CreateRepositoryInGitHubStepDefinition {
 
     private static final String CESAR = "Cesar";
+    private static final String CEDANIEL200 = "cedaniel200";
+    private static final String SECRET = System.getProperty("password");
 
     @Before
     public void jamesCanBrowseTheWeb() {
@@ -31,8 +33,8 @@ public class CreateRepositoryInGitHubStepDefinition {
     @Given("^I want to start versioning$")
     public void iWantToStartVersioning() {
         theActorCalled(CESAR).wasAbleTo(
-                Start.authenticating(theUser("YOUR_USERNAME")
-                .withPassword("YOUR_PASSWORD")));
+                Start.authenticating(theUser(CEDANIEL200)
+                .withPassword(SECRET)));
     }
 
     @When("^I create a repository in github$")

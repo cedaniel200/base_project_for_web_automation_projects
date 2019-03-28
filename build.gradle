@@ -20,13 +20,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:1.9.9")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.17")
     }
 }
 
 ext{
-    serenityVersion = '1.9.9'
-    serenityCucumberVersion = '1.9.4'
+    serenityVersion = '2.0.17'
+    serenityCucumberVersion = '1.9.20'
 }
 
 dependencies {

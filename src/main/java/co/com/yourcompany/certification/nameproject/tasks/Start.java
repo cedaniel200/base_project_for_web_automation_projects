@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
+import net.thucydides.core.annotations.Step;
 
 import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_FAILED_AUTHENTICATION;
 import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_LOGIN_PAGE_NOT_LOADED;
@@ -32,15 +33,8 @@ public class Start implements Task {
         this.user = user;
     }
 
-    public static Start authenticating(User user) {
-        return instrumented(Start.class, user);
-    }
-
-    public static Start withAnAuthenticatedDefaultUser() throws UserModelCreationException {
-        return instrumented(Start.class, theUser(USERNAME).withPassword(USER_PASSWORD));
-    }
-
     @Override
+    @Step("{0} performs an authentication")
     public <T extends Actor> void performAs(T theActor) {
         theActor.attemptsTo(Open.browserOn().the(gitHubLoginPage));
 
@@ -50,12 +44,20 @@ public class Start implements Task {
 
         theActor.attemptsTo(
                 Enter.theValue(user.getUsername()).into(USERNAME_OR_EMAIL_ADDRESS),
-                EnterAndHide.theValue(user.getPassword()).into(PASSWORD),
+                EnterAndHide.theValue(user.getPassword()).as("a password").into(PASSWORD),
                 Click.on(SIGN_IN));
 
         theActor.should(seeThat(the(DASHBOARD), isVisible())
                 .orComplainWith(StartException.class,
                         MESSAGE_FAILED_AUTHENTICATION));
+    }
+
+    public static Start authenticating(User user) {
+        return instrumented(Start.class, user);
+    }
+
+    public static Start withAnAuthenticatedDefaultUser() throws UserModelCreationException {
+        return instrumented(Start.class, theUser(USERNAME).withPassword(USER_PASSWORD));
     }
 
 }
