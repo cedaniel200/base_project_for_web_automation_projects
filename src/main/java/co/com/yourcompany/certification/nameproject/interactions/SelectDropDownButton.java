@@ -12,8 +12,11 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class SelectDropDownButton implements Interaction {
 
-    private static final String CSS_SELECTOR_FORMAT = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
+    private static final String CSS_SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
             "details > details-menu > div.select-menu-list > div.filterable-active";
+
+    private static final String CSS_SELECTOR_FORMAT_LICENSE = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
+            "details > details-menu > fuzzy-list > ul > li > label > span";
 
     private final Target button;
     private final Target filter;
@@ -30,13 +33,13 @@ public class SelectDropDownButton implements Interaction {
     public static SelectDropDownButton addGitIgnoreFilteringBy(GitIgnore valueFilter) {
         return instrumented(SelectDropDownButton.class, CreateNewRepositoryPage.ADD_GITIGNORE,
                 CreateNewRepositoryPage.FILTER_GITIGNORE, valueFilter.toString(),
-                String.format(CSS_SELECTOR_FORMAT, 1));
+                String.format(CSS_SELECTOR_FORMAT_GITIGNORE, 1));
     }
 
     public static SelectDropDownButton addLicenseFilteringBy(License valueFilter) {
         return instrumented(SelectDropDownButton.class, CreateNewRepositoryPage.ADD_LICENSE,
                 CreateNewRepositoryPage.FILTER_LICENSE, valueFilter.toString(),
-                String.format(CSS_SELECTOR_FORMAT, 2));
+                String.format(CSS_SELECTOR_FORMAT_LICENSE, 2));
     }
 
     @Override

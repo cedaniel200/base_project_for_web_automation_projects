@@ -36,7 +36,7 @@ public class CreateNewRepositoryPage extends PageObject {
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
-            .located(By.id("context-license-filter-field"));
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[2]/details/details-menu/fuzzy-list/div[2]/div/input");
 
     public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
             .the("Error message")
