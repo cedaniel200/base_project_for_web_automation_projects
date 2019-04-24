@@ -3,12 +3,9 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'idea'
-//apply plugin: 'nu.studer.credentials'
 apply plugin: 'net.serenity-bdd.aggregator'
 
 sourceCompatibility = 1.8
-
-//System.setProperty("password", project.group.getAt("var").toString())
 
 repositories {
     mavenCentral()
@@ -28,7 +25,6 @@ buildscript {
     }
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityVersion")
-        //classpath("nu.studer:gradle-credentials-plugin:1.0.7")
     }
 }
 

@@ -7,7 +7,7 @@ In the project directory open a console and execute the following commands:
  
  gradle clean build -x test
  
- gradle test aggregate
+ gradle test -Dgithub-user=your-github-user -Dpassword=your-password aggregate
   
 # Warning
 The example uses GitHub users, if the user used is new it may fail, since GitHub sends it to a different page than the one used in the exercise.
