@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'gradle clean build -x test'
+                bat 'gradlew.bat clean build -x test'
             }
         }
         stage('test-chrome') {
             steps {
-                bat 'gradle test -Dcontext=chrome -Dwebdriver.driver=chrome'
+                bat 'gradlew.bat test -Dcontext=chrome -Dwebdriver.driver=chrome'
             }
         }
         stage('test-firefox') {
             steps {
-                bat 'gradle test -Dcontext=firefox -Dwebdriver.driver=firefox'
+                bat 'gradlew.bat test -Dcontext=firefox -Dwebdriver.driver=firefox'
             }
         }
         stage('aggregate') {
             steps {
-                bat 'gradle aggregate'
+                bat 'gradlew.bat aggregate'
             }
             post {
                 always {
