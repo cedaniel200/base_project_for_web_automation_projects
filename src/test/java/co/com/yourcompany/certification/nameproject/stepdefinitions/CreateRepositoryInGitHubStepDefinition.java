@@ -27,6 +27,7 @@ public class CreateRepositoryInGitHubStepDefinition {
     private static final String CESAR = "Cesar";
     private static final String GITHUB_USER = System.getProperty("github-user");
     private static final String SECRET = System.getProperty("password");
+    private static final String OPERA = "opera";
 
     @Before
     public void jamesCanBrowseTheWeb() {
@@ -35,7 +36,7 @@ public class CreateRepositoryInGitHubStepDefinition {
     }
 
     private void verifyIfDriverIsOpera() {
-        if(System.getProperty("context").equals("opera")){
+        if(OPERA.equals(System.getProperty("context"))){
             OperaOptions operaOptions = new OperaOptions();
             operaOptions.setBinary(System.getProperty("binary"));
             BrowseTheWeb.as(theActorCalled(CESAR)).setDriver(new OperaDriver(operaOptions));
