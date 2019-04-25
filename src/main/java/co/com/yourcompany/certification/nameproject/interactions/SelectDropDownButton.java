@@ -7,8 +7,13 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.WebElement;
 
+import java.util.concurrent.Callable;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static org.awaitility.Awaitility.await;
 
 public class SelectDropDownButton implements Interaction {
 
@@ -48,6 +53,11 @@ public class SelectDropDownButton implements Interaction {
         button.resolveFor(actor).click();
         filter.resolveFor(actor).sendKeys(valueFilter);
         Target selectedItem = Target.the("selected item").locatedBy(cssSelectorForElementSelected);
+        await().forever().pollInterval(1, SECONDS).until(isNotNull(selectedItem.resolveFor(actor)));
         selectedItem.resolveFor(actor).click();
+    }
+
+    private Callable<Boolean> isNotNull(WebElement element) {
+        return () -> element != null;
     }
 }
