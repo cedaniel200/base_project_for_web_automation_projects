@@ -7,8 +7,11 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 
 import static co.com.yourcompany.certification.nameproject.model.builders.RepositoryBuilder.name;
 import static co.com.yourcompany.certification.nameproject.model.builders.UserBuilder.theUser;
@@ -28,6 +31,15 @@ public class CreateRepositoryInGitHubStepDefinition {
     @Before
     public void jamesCanBrowseTheWeb() {
         OnStage.setTheStage(new OnlineCast());
+        verifyIfDriverIsOpera();
+    }
+
+    private void verifyIfDriverIsOpera() {
+        if(System.getProperty("context").equals("opera")){
+            OperaOptions operaOptions = new OperaOptions();
+            operaOptions.setBinary(System.getProperty("binary"));
+            BrowseTheWeb.as(theActorCalled(CESAR)).setDriver(new OperaDriver(operaOptions));
+        }
     }
 
     @Given("^I want to start versioning$")
