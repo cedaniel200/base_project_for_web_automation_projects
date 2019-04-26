@@ -10,13 +10,13 @@ public class User {
     private final String username;
     private final String password;
 
-    public User(UserBuilder builder) throws UserModelCreationException {
+    public User(UserBuilder builder) {
         this.username = builder.getUsername();
         this.password = builder.getPassword();
         isValid();
     }
 
-    private void isValid() throws UserModelCreationException {
+    private void isValid(){
         if(isEmptyOrNull(username) || isEmptyOrNull(password)){
             throw new UserModelCreationException(
                     String.format("Invalid username (%s) or password (%s)", username, password));
