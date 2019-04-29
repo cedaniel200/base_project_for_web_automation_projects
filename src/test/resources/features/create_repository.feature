@@ -1,7 +1,7 @@
 Feature: Create repository
-  I want to create a repository in github
+  I as a free user I want to create a repository to start with the version of my source code
 
   Scenario: Creation of the repository
-    Given I want to start versioning
-    When I create a repository in github
-    Then I should see the repository created
+    Given Cesar wants to start versioning
+    When Cesar creates a repository
+    Then Cesar should see the repository created

@@ -30,7 +30,7 @@ public class CreateRepositoryInGitHubStepDefinition {
     private static final String OPERA = "opera";
 
     @Before
-    public void jamesCanBrowseTheWeb() {
+    public void setTheStage() {
         OnStage.setTheStage(new OnlineCast());
         verifyIfDriverIsOpera();
     }
@@ -43,15 +43,15 @@ public class CreateRepositoryInGitHubStepDefinition {
         }
     }
 
-    @Given("^I want to start versioning$")
-    public void iWantToStartVersioning() {
+    @Given("^Cesar wants to start versioning$")
+    public void startVersioning() {
         theActorCalled(CESAR).wasAbleTo(
                 Start.authenticating(theUser(GITHUB_USER)
                 .withPassword(SECRET)));
     }
 
-    @When("^I create a repository in github$")
-    public void whenYouCreateRepositoryInGithub() {
+    @When("^Cesar creates a repository$")
+    public void createRepository() {
         theActorInTheSpotlight().attemptsTo(
                 CreateRepository.withTheFollowingData(
                         name("TEST_BDD")
@@ -63,8 +63,8 @@ public class CreateRepositoryInGitHubStepDefinition {
         );
     }
 
-    @Then("^I should see the repository created$")
-    public void iShouldSeeTheRepositiorioCreated() {
+    @Then("^Cesar should see the repository created$")
+    public void shouldSeeTheRepositorioCreated() {
         theActorInTheSpotlight().should(seeThat(TheRepository.name(), is("TEST_BDD")));
     }
 
