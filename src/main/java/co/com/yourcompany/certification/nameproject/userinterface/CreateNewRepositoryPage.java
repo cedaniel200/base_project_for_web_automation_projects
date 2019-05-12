@@ -8,10 +8,10 @@ import org.openqa.selenium.By;
 @DefaultUrl("https://github.com/new")
 public class CreateNewRepositoryPage extends PageObject {
 
-    public static final Target REPOSITORY_NAME = Target.the("repository name")
+    public static final Target REPOSITORY_NAME = Target.the("repository name  field")
             .located(By.id("repository_name"));
 
-    public static final Target REPOSITORY_DESCRIPTION = Target.the("repository description")
+    public static final Target REPOSITORY_DESCRIPTION = Target.the("repository description field")
             .located(By.id("repository_description"));
 
     public static final Target INITIALIZE_THIS_REPOSITORY_WITH_README = Target
@@ -36,7 +36,7 @@ public class CreateNewRepositoryPage extends PageObject {
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
-            .located(By.id("context-license-filter-field"));
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[2]/details/details-menu/fuzzy-list/div[2]/div/input");
 
     public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
             .the("Error message")

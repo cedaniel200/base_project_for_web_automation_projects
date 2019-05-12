@@ -1,20 +1,7 @@
 Feature: Create repository
-  I want to create a repository in github
+  I as a free user I want to create a repository to start with the version of my source code
 
   Scenario: Creation of the repository
-    Given I want to start versioning
-    When I create a repository in github
-    Then I should see the repository created
-
-  Scenario Outline: Creation of the repository with data
-    Given I want to start versioning in GitHub
-      |   username  |  password   |
-      |   <username>  |   <password>    |
-    When I create a repository in github with the data
-    |    <name>    |         <description>         |
-    Then I should see the "<name>" repository created
-
-  Examples:
-  |   username  |  password   |    name    |         description         |
-  | an_username | a_password  | TEST_BDD_2 |  repository for bdd tests 2 |
-  | an_username | a_password  | TEST_BDD_3 |  repository for bdd tests 3 |
+    Given Cesar wants to start versioning
+    When Cesar creates a repository
+    Then Cesar should see the repository created

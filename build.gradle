@@ -1,4 +1,4 @@
-group 'co.com.your_company.certification'
+group 'co.com.yourcompany.certification'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -19,14 +19,13 @@ buildscript {
         mavenLocal()
         jcenter()
     }
-    dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:1.9.9")
+    ext{
+        serenityVersion = '2.0.17'
+        serenityCucumberVersion = '1.9.20'
     }
-}
-
-ext{
-    serenityVersion = '1.9.9'
-    serenityCucumberVersion = '1.9.4'
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityVersion")
+    }
 }
 
 dependencies {
