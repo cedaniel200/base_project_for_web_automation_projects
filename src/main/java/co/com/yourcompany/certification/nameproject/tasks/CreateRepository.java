@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.conditions.Check;
 
 import static co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsException.withMessageBy;
@@ -44,6 +45,7 @@ public class CreateRepository implements Task {
         actor.attemptsTo(
                 Check.whether(isNotEmptyOrNull(repository.description()))
                         .andIfSo(Enter.theValue(repository.description()).into(REPOSITORY_DESCRIPTION)),
+                Scroll.to(CREATE_REPOSITORY),
                 Check.whether(repository.isInitializeWithREADME())
                         .andIfSo(Click.on(INITIALIZE_THIS_REPOSITORY_WITH_README)),
                 Check.whether(repository.gitIgnore() != NONE)

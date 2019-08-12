@@ -41,4 +41,10 @@ public class CreateNewRepositoryPage extends PageObject {
     public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
             .the("Error message")
             .locatedBy("//*[@id=\"new_repository\"]/div[2]/auto-check/dl/dd[2]");
+
+    public static final String CSS_SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
+            "details > details-menu > div.select-menu-list > div.filterable-active";
+
+    public static final String CSS_SELECTOR_FORMAT_LICENSE = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
+            "details > details-menu > fuzzy-list > ul > li > label > span";
 }
