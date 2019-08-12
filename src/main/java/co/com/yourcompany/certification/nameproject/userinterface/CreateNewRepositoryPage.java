@@ -39,7 +39,7 @@ public class CreateNewRepositoryPage extends PageObject {
     public static final String CSS_SELECTOR_FORMAT_LICENSE = "#new_repository > div.js-with-permission-fields > " +
             "div.js-repository-auto-init-options > ul > li:nth-child(%d) > details > details-menu > fuzzy-list > ul " +
             "> li > label";
-    
+
     public static final Target CREATE_REPOSITORY = Target
             .the("Create repository")
             .locatedBy("//*[@id=\"new_repository\"]/div[3]/button");
