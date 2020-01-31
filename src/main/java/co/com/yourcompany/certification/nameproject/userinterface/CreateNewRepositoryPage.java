@@ -20,15 +20,11 @@ public class CreateNewRepositoryPage extends PageObject {
 
     public static final Target ADD_GITIGNORE = Target
             .the("Add .gitignore")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[1]/details/summary");
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/div[4]/ul/li[1]/details/summary");
 
     public static final Target ADD_LICENSE = Target
             .the("Add a license")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[2]/details/summary");
-
-    public static final Target CREATE_REPOSITORY = Target
-            .the("Create repository")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/button");
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/div[4]/ul/li[2]/details/summary");
 
     public static final Target FILTER_GITIGNORE = Target
             .the("filter of the gitignore")
@@ -36,7 +32,17 @@ public class CreateNewRepositoryPage extends PageObject {
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/ul/li[2]/details/details-menu/fuzzy-list/div[2]/div/input");
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/div[4]/ul/li[2]/details/details-menu/fuzzy-list/div[2]/div/input");
+
+    public static final String CSS_SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > div.js-repository-auto-init-options > ul > li:nth-child(1) > " +
+            "details > details-menu > div.select-menu-list > div.filterable-active";
+
+    public static final String CSS_SELECTOR_FORMAT_LICENSE = "#new_repository > div.js-with-permission-fields > div.js-repository-auto-init-options > ul > li:nth-child(2) > " +
+            "details > details-menu > fuzzy-list > ul > li > label > span";
+
+    public static final Target CREATE_REPOSITORY = Target
+            .the("Create repository")
+            .locatedBy("//*[@id=\"new_repository\"]/div[3]/button");
 
     public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
             .the("Error message")

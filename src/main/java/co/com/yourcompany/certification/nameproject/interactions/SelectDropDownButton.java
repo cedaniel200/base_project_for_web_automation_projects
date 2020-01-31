@@ -11,17 +11,13 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.Callable;
 
+import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.CSS_SELECTOR_FORMAT_GITIGNORE;
+import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.CSS_SELECTOR_FORMAT_LICENSE;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static org.awaitility.Awaitility.await;
 
 public class SelectDropDownButton implements Interaction {
-
-    private static final String CSS_SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
-            "details > details-menu > div.select-menu-list > div.filterable-active";
-
-    private static final String CSS_SELECTOR_FORMAT_LICENSE = "#new_repository > div.js-with-permission-fields > ul > li:nth-child(%d) > " +
-            "details > details-menu > fuzzy-list > ul > li > label > span";
 
     private final Target button;
     private final Target filter;
@@ -38,13 +34,13 @@ public class SelectDropDownButton implements Interaction {
     public static SelectDropDownButton addGitIgnoreFilteringBy(GitIgnore valueFilter) {
         return instrumented(SelectDropDownButton.class, CreateNewRepositoryPage.ADD_GITIGNORE,
                 CreateNewRepositoryPage.FILTER_GITIGNORE, valueFilter.toString(),
-                String.format(CSS_SELECTOR_FORMAT_GITIGNORE, 1));
+                CSS_SELECTOR_FORMAT_GITIGNORE);
     }
 
     public static SelectDropDownButton addLicenseFilteringBy(License valueFilter) {
         return instrumented(SelectDropDownButton.class, CreateNewRepositoryPage.ADD_LICENSE,
                 CreateNewRepositoryPage.FILTER_LICENSE, valueFilter.toString(),
-                String.format(CSS_SELECTOR_FORMAT_LICENSE, 2));
+                CSS_SELECTOR_FORMAT_LICENSE);
     }
 
     @Override

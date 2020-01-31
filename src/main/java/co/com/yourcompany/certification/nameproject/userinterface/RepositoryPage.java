@@ -4,5 +4,5 @@ import net.serenitybdd.screenplay.targets.Target;
 
 public class RepositoryPage {
     public static final Target REPOSITORY_NAME = Target.the("repository name")
-            .locatedBy("//*[@id=\"js-repo-pjax-container\"]/div[1]/div/h1/strong/a");
+            .locatedBy("//*[@id=\"js-repo-pjax-container\"]/div[1]/div/div/h1/strong/a");
 }
