@@ -1,12 +1,9 @@
 package co.com.yourcompany.certification.nameproject.userinterface;
 
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.screenplay.targets.Target;
-import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.By;
 
-@DefaultUrl("https://github.com/new")
-public class CreateNewRepositoryPage extends PageObject {
+public class CreateNewRepositoryPage {
 
     public static final Target REPOSITORY_NAME = Target.the("repository name  field")
             .located(By.id("repository_name"));
@@ -32,13 +29,12 @@ public class CreateNewRepositoryPage extends PageObject {
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/div[4]/ul/li[2]/details/details-menu/fuzzy-list/div[2]/div/input");
+            .locatedBy("//*[@id=\"repo-new-license-details\"]/div/div/filter-input/input");
 
-    public static final String CSS_SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > div.js-repository-auto-init-options > ul > li:nth-child(1) > " +
+    public static final String SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > div.js-repository-auto-init-options > ul > li:nth-child(1) > " +
             "details > details-menu > div.select-menu-list > div.filterable-active";
 
-    public static final String CSS_SELECTOR_FORMAT_LICENSE = "#new_repository > div.js-with-permission-fields > div.js-repository-auto-init-options > ul > li:nth-child(2) > " +
-            "details > details-menu > fuzzy-list > ul > li > label > span";
+    public static final String SELECTOR_FORMAT_LICENSE = "//label[@aria-selected='true']";
 
     public static final Target CREATE_REPOSITORY = Target
             .the("Create repository")

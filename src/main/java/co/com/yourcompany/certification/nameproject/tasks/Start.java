@@ -36,7 +36,7 @@ public class Start implements Task {
     @Override
     @Step("{0} performs an authentication")
     public <T extends Actor> void performAs(T theActor) {
-        theActor.attemptsTo(Open.browserOn().the(gitHubLoginPage));
+        theActor.attemptsTo(Open.browserOn(gitHubLoginPage));
 
         theActor.should(seeThat(the(USERNAME_OR_EMAIL_ADDRESS), isVisible())
                 .orComplainWith(StartException.class,

@@ -2,7 +2,6 @@ package co.com.yourcompany.certification.nameproject.interactions;
 
 import co.com.yourcompany.certification.nameproject.model.enumerables.GitIgnore;
 import co.com.yourcompany.certification.nameproject.model.enumerables.License;
-import co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.targets.Target;
@@ -11,8 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.Callable;
 
-import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.CSS_SELECTOR_FORMAT_GITIGNORE;
-import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.CSS_SELECTOR_FORMAT_LICENSE;
+import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.*;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static org.awaitility.Awaitility.await;
@@ -24,23 +22,23 @@ public class SelectDropDownButton implements Interaction {
     private final String valueFilter;
     private final String cssSelectorForElementSelected;
 
-    public SelectDropDownButton(Target button, Target filter, String valueFilter, String cssSelectorForElementSelected) {
+    public SelectDropDownButton(Target button, Target filter, String valueFilter, String selectorForElementSelected) {
         this.valueFilter = valueFilter;
         this.button = button;
         this.filter = filter;
-        this.cssSelectorForElementSelected = cssSelectorForElementSelected;
+        this.cssSelectorForElementSelected = selectorForElementSelected;
     }
 
     public static SelectDropDownButton addGitIgnoreFilteringBy(GitIgnore valueFilter) {
-        return instrumented(SelectDropDownButton.class, CreateNewRepositoryPage.ADD_GITIGNORE,
-                CreateNewRepositoryPage.FILTER_GITIGNORE, valueFilter.toString(),
-                CSS_SELECTOR_FORMAT_GITIGNORE);
+        return instrumented(SelectDropDownButton.class, ADD_GITIGNORE,
+                FILTER_GITIGNORE, valueFilter.toString(),
+                SELECTOR_FORMAT_GITIGNORE);
     }
 
     public static SelectDropDownButton addLicenseFilteringBy(License valueFilter) {
-        return instrumented(SelectDropDownButton.class, CreateNewRepositoryPage.ADD_LICENSE,
-                CreateNewRepositoryPage.FILTER_LICENSE, valueFilter.toString(),
-                CSS_SELECTOR_FORMAT_LICENSE);
+        return instrumented(SelectDropDownButton.class, ADD_LICENSE,
+                FILTER_LICENSE, valueFilter.toString(),
+                SELECTOR_FORMAT_LICENSE);
     }
 
     @Override
