@@ -3,7 +3,7 @@ package co.com.yourcompany.certification.nameproject.userinterface;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
-public class GitHubHomePage {
+public class UserGitHubHomePage {
     public static final Target NEW_REPOSITORY = Target.the("New repository")
             .located(By.linkText("New"));
 
