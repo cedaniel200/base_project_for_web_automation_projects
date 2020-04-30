@@ -16,7 +16,7 @@ import net.serenitybdd.screenplay.conditions.Check;
 import static co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsException.withMessageBy;
 import static co.com.yourcompany.certification.nameproject.model.enumerables.GitIgnore.NONE;
 import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.*;
-import static co.com.yourcompany.certification.nameproject.userinterface.GitHubHomePage.NEW_REPOSITORY;
+import static co.com.yourcompany.certification.nameproject.userinterface.UserGitHubHomePage.NEW_REPOSITORY;
 import static co.com.yourcompany.certification.nameproject.util.validations.Validations.isNotEmptyOrNull;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;

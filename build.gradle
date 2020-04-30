@@ -20,8 +20,8 @@ buildscript {
         jcenter()
     }
     ext{
-        serenityVersion = '2.0.17'
-        serenityCucumberVersion = '1.9.20'
+        serenityVersion = '2.1.2'
+        serenityCucumberVersion = '1.9.45'
     }
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityVersion")

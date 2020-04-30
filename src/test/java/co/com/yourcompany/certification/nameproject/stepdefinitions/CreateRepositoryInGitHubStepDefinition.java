@@ -4,6 +4,7 @@ import co.com.yourcompany.certification.nameproject.questions.TheCurrent;
 import co.com.yourcompany.certification.nameproject.questions.TheRepository;
 import co.com.yourcompany.certification.nameproject.tasks.CreateRepository;
 import co.com.yourcompany.certification.nameproject.tasks.Start;
+import co.com.yourcompany.certification.nameproject.tasks.StartFromHome;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,6 +14,8 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
+
+import java.net.ConnectException;
 
 import static co.com.yourcompany.certification.nameproject.model.builders.RepositoryBuilder.name;
 import static co.com.yourcompany.certification.nameproject.model.builders.UserBuilder.theUser;
@@ -44,6 +47,19 @@ public class CreateRepositoryInGitHubStepDefinition {
             operaOptions.setBinary(System.getProperty("binary"));
             BrowseTheWeb.as(theActorCalled(CESAR)).setDriver(new OperaDriver(operaOptions));
         }
+    }
+
+    @Given("^Cesar realizes that there is connection$")
+    public void verifyConnection() throws ConnectException {
+        // Simula la verificación de la conexión y excepcion por time out
+        throw new ConnectException("Connection timed out");
+    }
+
+    @Given("^Cesar authenticates from home$")
+    public void authenticateFromHome() {
+        theActorCalled(CESAR).wasAbleTo(
+                StartFromHome.authenticating(theUser(GITHUB_USER)
+                        .withPassword(SECRET)));
     }
 
     @Given("^Cesar wants to start versioning$")
