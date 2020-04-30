@@ -1,12 +1,12 @@
 package co.com.yourcompany.certification.nameproject.userinterface;
 
+import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.screenplay.targets.Target;
+import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.By;
 
-public class GitHubHomePage {
-    public static final Target NEW_REPOSITORY = Target.the("New repository")
-            .located(By.linkText("New"));
-
-    public static final Target DASHBOARD = Target.the("Dashboard  of the home page")
-            .located(By.id("dashboard"));
+@DefaultUrl("https://github.com")
+public class GitHubHomePage extends PageObject {
+    public static final Target GO_TO_SIGN_IN = Target.the("go to sign in")
+            .located(By.linkText("Ssign in")); // Error voluntario para generar la excepción
 }

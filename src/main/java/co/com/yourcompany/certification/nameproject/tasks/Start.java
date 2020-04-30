@@ -1,6 +1,6 @@
 package co.com.yourcompany.certification.nameproject.tasks;
 
-import co.com.yourcompany.certification.nameproject.exceptions.StartException;
+import co.com.yourcompany.certification.nameproject.exceptions.StartError;
 import co.com.yourcompany.certification.nameproject.exceptions.UserModelCreationException;
 import co.com.yourcompany.certification.nameproject.interactions.EnterAndHide;
 import co.com.yourcompany.certification.nameproject.model.User;
@@ -12,8 +12,8 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 import net.thucydides.core.annotations.Step;
 
-import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_FAILED_AUTHENTICATION;
-import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_LOGIN_PAGE_NOT_LOADED;
+import static co.com.yourcompany.certification.nameproject.exceptions.StartError.MESSAGE_FAILED_AUTHENTICATION;
+import static co.com.yourcompany.certification.nameproject.exceptions.StartError.MESSAGE_LOGIN_PAGE_NOT_LOADED;
 import static co.com.yourcompany.certification.nameproject.model.builders.UserBuilder.theUser;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubLoginPage.*;
 import static co.com.yourcompany.certification.nameproject.userinterface.UserGitHubHomePage.DASHBOARD;
@@ -39,7 +39,7 @@ public class Start implements Task {
         theActor.attemptsTo(Open.browserOn(gitHubLoginPage));
 
         theActor.should(seeThat(the(USERNAME_OR_EMAIL_ADDRESS), isVisible())
-                .orComplainWith(StartException.class,
+                .orComplainWith(StartError.class,
                         MESSAGE_LOGIN_PAGE_NOT_LOADED));
 
         theActor.attemptsTo(
@@ -48,7 +48,7 @@ public class Start implements Task {
                 Click.on(SIGN_IN));
 
         theActor.should(seeThat(the(DASHBOARD), isVisible())
-                .orComplainWith(StartException.class,
+                .orComplainWith(StartError.class,
                         MESSAGE_FAILED_AUTHENTICATION));
     }
 

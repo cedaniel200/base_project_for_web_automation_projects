@@ -1,6 +1,6 @@
 package co.com.yourcompany.certification.nameproject.tasks;
 
-import co.com.yourcompany.certification.nameproject.exceptions.StartException;
+import co.com.yourcompany.certification.nameproject.exceptions.StartError;
 import co.com.yourcompany.certification.nameproject.exceptions.UserModelCreationException;
 import co.com.yourcompany.certification.nameproject.interactions.EnterAndHide;
 import co.com.yourcompany.certification.nameproject.model.User;
@@ -14,7 +14,7 @@ import net.thucydides.core.annotations.Step;
 
 import java.time.Duration;
 
-import static co.com.yourcompany.certification.nameproject.exceptions.StartException.MESSAGE_FAILED_AUTHENTICATION;
+import static co.com.yourcompany.certification.nameproject.exceptions.StartError.MESSAGE_FAILED_AUTHENTICATION;
 import static co.com.yourcompany.certification.nameproject.model.builders.UserBuilder.theUser;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubHomePage.GO_TO_SIGN_IN;
 import static co.com.yourcompany.certification.nameproject.userinterface.GitHubLoginPage.*;
@@ -52,7 +52,7 @@ public class StartFromHome implements Task {
                 Click.on(SIGN_IN));
 
         theActor.should(seeThat(the(DASHBOARD), isVisible())
-                .orComplainWith(StartException.class,
+                .orComplainWith(StartError.class,
                         MESSAGE_FAILED_AUTHENTICATION));
     }
 
