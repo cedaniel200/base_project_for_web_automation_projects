@@ -17,24 +17,22 @@ public class CreateNewRepositoryPage {
 
     public static final Target ADD_GITIGNORE = Target
             .the("Add .gitignore")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/div[4]/ul/li[1]/details/summary");
+            .locatedBy(".my-3 > .select-menu > .btn");
+
+    public static final Target FILTER_GITIGNORE = Target
+            .the("filter of the gitignore").located(By.id("context-ignore-filter-field"));
+
+    public static final String SELECTOR_FORMAT_GITIGNORE = ".filterable-active";
 
     public static final Target ADD_LICENSE = Target
             .the("Add a license")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/div[4]/ul/li[2]/details/summary");
-
-    public static final Target FILTER_GITIGNORE = Target
-            .the("filter of the gitignore")
-            .located(By.id("context-ignore-filter-field"));
+            .locatedBy(".btn > .text-normal");
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
-            .locatedBy("//*[@id=\"repo-new-license-details\"]/div/div/filter-input/input");
+            .locatedBy(".SelectMenu-filter > .width-full");
 
-    public static final String SELECTOR_FORMAT_GITIGNORE = "#new_repository > div.js-with-permission-fields > div.js-repository-auto-init-options > ul > li:nth-child(1) > " +
-            "details > details-menu > div.select-menu-list > div.filterable-active";
-
-    public static final String SELECTOR_FORMAT_LICENSE = "//label[@aria-selected='true']";
+    public static final String SELECTOR_FORMAT_LICENSE = "//div[@class=\"SelectMenu-list\"]//span[contains(text(), '%s')]//ancestor::label";
 
     public static final Target CREATE_REPOSITORY = Target
             .the("Create repository")
@@ -42,5 +40,5 @@ public class CreateNewRepositoryPage {
 
     public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
             .the("Error message")
-            .locatedBy("//*[@id=\"new_repository\"]/div[2]/auto-check/dl/dd[2]");
+            .locatedBy(".error > strong");
 }

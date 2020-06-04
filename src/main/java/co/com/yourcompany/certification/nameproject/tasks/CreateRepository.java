@@ -1,6 +1,6 @@
 package co.com.yourcompany.certification.nameproject.tasks;
 
-import co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsException;
+import co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsError;
 import co.com.yourcompany.certification.nameproject.exceptions.RepositoryModelCreationException;
 import co.com.yourcompany.certification.nameproject.interactions.SelectDropDownButton;
 import co.com.yourcompany.certification.nameproject.model.Repository;
@@ -13,10 +13,10 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.conditions.Check;
 
-import static co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsException.withMessageBy;
+import static co.com.yourcompany.certification.nameproject.exceptions.RepositoryAlreadyExistsError.withMessageBy;
 import static co.com.yourcompany.certification.nameproject.model.enumerables.GitIgnore.NONE;
 import static co.com.yourcompany.certification.nameproject.userinterface.CreateNewRepositoryPage.*;
-import static co.com.yourcompany.certification.nameproject.userinterface.GitHubHomePage.NEW_REPOSITORY;
+import static co.com.yourcompany.certification.nameproject.userinterface.UserGitHubHomePage.NEW_REPOSITORY;
 import static co.com.yourcompany.certification.nameproject.util.validations.Validations.isNotEmptyOrNull;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
@@ -39,7 +39,7 @@ public class CreateRepository implements Task {
         );
 
         actor.should(seeThat(the(MESSAGE_REPOSITORY_ALREADY_EXISTS), isNotVisible())
-                .orComplainWith(RepositoryAlreadyExistsException.class,
+                .orComplainWith(RepositoryAlreadyExistsError.class,
                         withMessageBy(repository.name())));
 
         actor.attemptsTo(

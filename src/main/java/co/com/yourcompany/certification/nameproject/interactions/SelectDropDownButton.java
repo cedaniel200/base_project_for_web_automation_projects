@@ -38,7 +38,7 @@ public class SelectDropDownButton implements Interaction {
     public static SelectDropDownButton addLicenseFilteringBy(License valueFilter) {
         return instrumented(SelectDropDownButton.class, ADD_LICENSE,
                 FILTER_LICENSE, valueFilter.toString(),
-                SELECTOR_FORMAT_LICENSE);
+                String.format(SELECTOR_FORMAT_LICENSE, valueFilter));
     }
 
     @Override
