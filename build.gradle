@@ -1,18 +1,3 @@
-group 'co.com.yourcompany.certification'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'net.serenity-bdd.aggregator'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-    jcenter()
-}
-
 buildscript {
     repositories {
         mavenCentral()
@@ -26,6 +11,21 @@ buildscript {
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityVersion")
     }
+}
+
+group 'co.com.yourcompany.certification'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
 }
 
 dependencies {
@@ -42,7 +42,7 @@ dependencies {
 }
 
 tasks.withType(Test){
-    systemProperties = System.properties
+    systemProperties = System.properties as Map<String, ?>
     maxParallelForks = Runtime.runtime.availableProcessors()
 }
 

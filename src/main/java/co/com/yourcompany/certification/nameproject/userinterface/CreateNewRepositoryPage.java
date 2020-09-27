@@ -15,18 +15,28 @@ public class CreateNewRepositoryPage {
             .the("Initialize this repository with a README")
             .located(By.id("repository_auto_init"));
 
+
+    public static final Target CHECKBOX_GITIGNORE = Target
+            .the("Checkbox .gitignore")
+            .located(By.id("repository_gitignore_template_toggle"));
+
     public static final Target ADD_GITIGNORE = Target
             .the("Add .gitignore")
-            .locatedBy(".my-3 > .select-menu > .btn");
+            .locatedBy(":nth-child(5) > .form-checkbox-details > .details-reset > .btn");
 
     public static final Target FILTER_GITIGNORE = Target
             .the("filter of the gitignore").located(By.id("context-ignore-filter-field"));
 
     public static final String SELECTOR_FORMAT_GITIGNORE = ".filterable-active";
 
+
+    public static final Target CHECKBOX_LICENSE = Target
+            .the("checkbox a license")
+            .located(By.id("repository_license_template_toggle"));
+
     public static final Target ADD_LICENSE = Target
             .the("Add a license")
-            .locatedBy(".btn > .text-normal");
+            .locatedBy(" //*[contains(text(),'License:')]");
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
@@ -34,9 +44,10 @@ public class CreateNewRepositoryPage {
 
     public static final String SELECTOR_FORMAT_LICENSE = "//div[@class=\"SelectMenu-list\"]//span[contains(text(), '%s')]//ancestor::label";
 
+
     public static final Target CREATE_REPOSITORY = Target
             .the("Create repository")
-            .locatedBy("//*[@id=\"new_repository\"]/div[3]/button");
+            .locatedBy("div.js-with-permission-fields > .btn-primary");
 
     public static final Target MESSAGE_REPOSITORY_ALREADY_EXISTS = Target
             .the("Error message")
