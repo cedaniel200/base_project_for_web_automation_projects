@@ -2,14 +2,18 @@ buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
-        jcenter()
     }
     ext{
-        serenityVersion = '2.1.2'
-        serenityCucumberVersion = '1.9.45'
+        serenityVersion = '3.2.5'
+        serenityGradlePluginVersion = '2.4.34'
+        serenityCucumberVersion = '3.2.5'
+
+        junitVersion = '4.13.2'
+        slf4jVersion = '1.7.36'
+        assertjVersion = '3.23.1'
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityVersion")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityGradlePluginVersion")
     }
 }
 
@@ -25,20 +29,19 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
-    jcenter()
 }
 
 dependencies {
     testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
     testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
-    compile "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
-    compile "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
-    compile "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.assertj:assertj-core:3.9.1'
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "org.assertj:assertj-core:$rootProject.ext.assertjVersion"
 
-    testImplementation 'org.slf4j:slf4j-simple:1.7.7'
+    testImplementation "org.slf4j:slf4j-simple:$rootProject.ext.slf4jVersion"
 }
 
 tasks.withType(Test){

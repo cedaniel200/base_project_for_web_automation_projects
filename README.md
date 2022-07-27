@@ -33,7 +33,7 @@ La estructura completa del proyecto es la siguiente:
 
 ## Requerimientos
 
-Para correr el proyecto se necesita Java JDK 1.8 y Gradle preferiblemente con la versión 4.8.1.
+Para correr el proyecto se necesita Java JDK 1.8 y Gradle preferiblemente con la versión 7.1.
 
 ## Para correr el proyecto
 
@@ -111,7 +111,7 @@ The complete structure of the project is the following:
 ````
 ## Requirements
 
-To run the project you need Java JDK 1.8 and Gradle preferably with version 4.3.
+To run the project you need Java JDK 1.8 and Gradle preferably with version 7.1.
 
 ## To run the project
 
