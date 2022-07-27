@@ -16,23 +16,16 @@ public class CreateNewRepositoryPage {
             .located(By.id("repository_auto_init"));
 
 
-    public static final Target CHECKBOX_GITIGNORE = Target
-            .the("Checkbox .gitignore")
-            .located(By.id("repository_gitignore_template_toggle"));
-
     public static final Target ADD_GITIGNORE = Target
             .the("Add .gitignore")
-            .locatedBy(":nth-child(5) > .form-checkbox-details > .details-reset > .btn");
+            .locatedBy("//*[contains(text(),'.gitignore template:')]");
 
     public static final Target FILTER_GITIGNORE = Target
-            .the("filter of the gitignore").located(By.id("context-ignore-filter-field"));
+            .the("filter of the gitignore")
+            .locatedBy("//input[@aria-label = '.gitignore template']");
 
-    public static final String SELECTOR_FORMAT_GITIGNORE = ".filterable-active";
+    public static final String SELECTOR_FORMAT_GITIGNORE = "//div[contains(text(), '%s')]//ancestor::label";
 
-
-    public static final Target CHECKBOX_LICENSE = Target
-            .the("checkbox a license")
-            .located(By.id("repository_license_template_toggle"));
 
     public static final Target ADD_LICENSE = Target
             .the("Add a license")
@@ -40,9 +33,9 @@ public class CreateNewRepositoryPage {
 
     public static final Target FILTER_LICENSE = Target
             .the("filter of the license")
-            .locatedBy(".SelectMenu-filter > .width-full");
+            .locatedBy("//input[@aria-label = 'License']");
 
-    public static final String SELECTOR_FORMAT_LICENSE = "//div[@class=\"SelectMenu-list\"]//span[contains(text(), '%s')]//ancestor::label";
+    public static final String SELECTOR_FORMAT_LICENSE = "//div[contains(text(), '%s')]//ancestor::label";
 
 
     public static final Target CREATE_REPOSITORY = Target

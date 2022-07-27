@@ -17,14 +17,12 @@ import static org.awaitility.Awaitility.await;
 
 public class SelectDropDownButton implements Interaction {
 
-    private final Target checkbox;
     private final Target button;
     private final Target filter;
     private final String valueFilter;
     private final String cssSelectorForElementSelected;
 
-    public SelectDropDownButton(Target checkbox, Target button, Target filter, String valueFilter, String selectorForElementSelected) {
-        this.checkbox = checkbox;
+    public SelectDropDownButton(Target button, Target filter, String valueFilter, String selectorForElementSelected) {
         this.valueFilter = valueFilter;
         this.button = button;
         this.filter = filter;
@@ -32,13 +30,13 @@ public class SelectDropDownButton implements Interaction {
     }
 
     public static SelectDropDownButton addGitIgnoreFilteringBy(GitIgnore valueFilter) {
-        return instrumented(SelectDropDownButton.class, CHECKBOX_GITIGNORE, ADD_GITIGNORE,
+        return instrumented(SelectDropDownButton.class, ADD_GITIGNORE,
                 FILTER_GITIGNORE, valueFilter.toString(),
-                SELECTOR_FORMAT_GITIGNORE);
+                String.format(SELECTOR_FORMAT_GITIGNORE, valueFilter));
     }
 
     public static SelectDropDownButton addLicenseFilteringBy(License valueFilter) {
-        return instrumented(SelectDropDownButton.class, CHECKBOX_LICENSE, ADD_LICENSE,
+        return instrumented(SelectDropDownButton.class, ADD_LICENSE,
                 FILTER_LICENSE, valueFilter.toString(),
                 String.format(SELECTOR_FORMAT_LICENSE, valueFilter));
     }
@@ -46,7 +44,6 @@ public class SelectDropDownButton implements Interaction {
     @Override
     @Step("{0} clicks on #button is filtered by #valueFilter and click on the resulting item")
     public <T extends Actor> void performAs(T actor) {
-        checkbox.resolveFor(actor).click();
         button.resolveFor(actor).click();
         filter.resolveFor(actor).sendKeys(valueFilter);
         Target selectedItem = Target.the("selected item").locatedBy(cssSelectorForElementSelected);
