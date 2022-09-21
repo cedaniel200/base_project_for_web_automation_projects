@@ -7,19 +7,19 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh './gradlew clean build -x test'
+                sh 'sh ./gradlew clean build -x test'
             }
         }
         stage('test-firefox') {
             steps {
                 withCredentials([string(credentialsId: 'password-github', variable: 'password')]) {
-                    sh "./gradlew test -Dgithub-user=${params.USER} -Dpassword=${password} -Dcontext=firefox -Dwebdriver.driver=firefox"
+                    sh "sh ./gradlew test -Dgithub-user=${params.USER} -Dpassword=${password} -Dcontext=firefox -Dwebdriver.driver=firefox"
                 }
             }
         }
         stage('aggregate') {
             steps {
-                sh './gradlew aggregate'
+                sh 'sh ./gradlew aggregate'
             }
         }
         stage('publish report'){
