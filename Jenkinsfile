@@ -1,5 +1,5 @@
 pipeline {
-    agent windows
+    agent {label "windows"}
     triggers { cron('H */4 * * 1-5') }
     parameters {
         string(name: 'USER', defaultValue: 'tu usuario', description: 'Usuario de GitHub')
