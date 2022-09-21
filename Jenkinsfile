@@ -7,19 +7,19 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'gradlew.bat clean build -x test'
+                sh 'gradlew.bat clean build -x test'
             }
         }
         stage('test-firefox') {
             steps {
                 withCredentials([string(credentialsId: 'password-github', variable: 'password')]) {
-                    bat "gradlew.bat test -Dgithub-user=${params.USER} -Dpassword=${password} -Dcontext=firefox -Dwebdriver.driver=firefox"
+                    sh "gradlew.bat test -Dgithub-user=${params.USER} -Dpassword=${password} -Dcontext=firefox -Dwebdriver.driver=firefox"
                 }
             }
         }
         stage('aggregate') {
             steps {
-                bat 'gradlew.bat aggregate'
+                sh 'gradlew.bat aggregate'
             }
         }
         stage('publish report'){
